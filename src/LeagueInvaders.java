@@ -9,8 +9,6 @@ import javax.swing.Timer;
 public class LeagueInvaders{
 	
 	private JFrame frame;
-	final int WIDTH = 500;
-	final int HEIGHT = 800;
 	GamePanel panel;
 	
       public static void main(String[] args) {
@@ -24,12 +22,12 @@ public class LeagueInvaders{
       public LeagueInvaders() {
 		  
     	  frame = new JFrame();
-    	  panel = new GamePanel();
+    	  panel = new GamePanel(500, 800);
     	  
 	  }
       
       public void setup() {
-    	  frame.setSize(WIDTH, HEIGHT);
+    	  frame.setSize(500, 800);
     	  frame.add(panel);
     	  frame.addKeyListener(panel);
     	  
