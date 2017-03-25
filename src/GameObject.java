@@ -1,21 +1,27 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class GameObject {
 	
-	private int x;
-	private int y;
-	private int width;
-	private int height;
+	protected int x;
+	protected int y;
+	protected int width;
+	protected int height;
+	protected boolean isAlive;
+	
+	public GameObject() {
+		isAlive = true;
+		
+	}
 	
 	
 	public void update() {
-		x += 10;
-		y += 10;
+		
 		
 	}
 	
 	public void draw(Graphics g) {
-		g.fillRect(x, y, 100, 100);
+	
 	}
 	
 
