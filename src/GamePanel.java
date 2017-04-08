@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,6 +25,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font otherFont;
 	Rocketship ship;
 	ObjectManager manager;
+	public static BufferedImage alienImg;
+	public static BufferedImage rocketImg;
+	public static BufferedImage bulletImg;
 
 	public GamePanel(int WIDTH, int HEIGHT) {
 		time = new Timer(1000 / 60, this);
@@ -32,6 +38,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		ship = new Rocketship(250, 700, 50, 50);
 		manager = new ObjectManager();
 		manager.addObject(ship);
+		try {
+			alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+			rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
 		
 
@@ -47,6 +62,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manager.checkCollision();
 		if(ship.isAlive == false) {
 			currentState = END_STATE;
+			manager.reset();
+			ship = new Rocketship(250, 700, 50, 50);
+			manager.addObject(ship);
 		}
 
 	}
@@ -82,7 +100,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Game Over", 0, HEIGHT/2 - 48);
 		g.drawString("You killed " + manager.getScore() + " things", 0, HEIGHT/2);
 		g.setFont(otherFont);
-		g.drawString("Press Backspace to restart", 0, HEIGHT/2 + 32);
+		g.drawString("Press Enter to restart", 0, HEIGHT/2 + 32);
 
 	}
 
@@ -105,6 +123,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (currentState == MENU_STATE) {
 			updateMenuState();
+			manager.setScore(0);
 		} else if (currentState == GAME_STATE) {
 			updateGameState();
 		} else if (currentState == END_STATE) {
