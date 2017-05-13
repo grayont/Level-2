@@ -1,9 +1,25 @@
-package Reversi;
+ package Reversi;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Controller implements MouseListener{
+	
+	private int r;
+	private int c;
+	private int player = 1;
+	
+	public int getRow() {
+		return r;
+	}
+	
+	public int getCollumn() {
+		return c;
+	}
+	
+	public int getPlayer() {
+		return player;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -14,9 +30,16 @@ public class Controller implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getX() < 112) {
-			
+		c = e.getX()/112;
+		r = e.getY()/112;
+		
+		if(player == 1) {
+			player ++;
 		}
+		else{
+			player --;
+		}
+		
 		
 	}
 

@@ -17,9 +17,21 @@ public class Display extends JPanel {
 		spaces = new int[8][8];
 		for(int r = 0; r < spaces.length; r++) {
 			for( int c = 0; c < spaces[r].length; c++){
-				spaces[r][c] = 0;
+				if( (r == 3 && c == 3) || (r == 4 && c == 4)) {
+					spaces[r][c] = 1;
+				}
+				else if( (r == 3 && c == 4) || (r == 4 && c == 3)) {
+					spaces[r][c] = 2;
+				}
+				else {
+					spaces[r][c] = 0;
+				}
 			}
 		}
+	}
+	
+	public void update(int p) {
+		
 	}
 
 	@Override
