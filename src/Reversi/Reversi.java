@@ -6,12 +6,12 @@ public class Reversi {
 
 	public static void main(String[] args) {
 		Reversi r = new Reversi();
-		
 
 	}
 
 	public Reversi() {
-		Display display = new Display(896, 896);
+		GameManager gm = new GameManager();
+		Display display = new Display(896, 896, gm);
 		Controller controller = new Controller();
 		JFrame frame = new JFrame();
 		frame.add(display);

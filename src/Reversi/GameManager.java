@@ -21,6 +21,10 @@ public class GameManager {
 		}
 	}
 	
+	public int[][] getSpaces() {
+		return spaces;
+	}
+	
 	public update() {
 		
 	}
