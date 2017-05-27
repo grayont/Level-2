@@ -8,6 +8,13 @@ public class Controller implements MouseListener{
 	private int r;
 	private int c;
 	private int player = 1;
+	private GameManager gm;
+	private Display display;
+	
+	public Controller(GameManager gm, Display display) {
+		this.gm = gm;
+		this.display = display;
+	}
 	
 	public int getRow() {
 		return r;
@@ -33,13 +40,19 @@ public class Controller implements MouseListener{
 		c = e.getX()/112;
 		r = e.getY()/112;
 		
-		if(player == 1) {
-			player ++;
+		boolean completeTurn = gm.drawCircle(r, c, player);
+		display.repaint();
+		if(completeTurn) {
+			if(player == 1) {
+				player ++;
+			}
+			else{
+				player --;
+			}	
 		}
-		else{
-			player --;
-		}
-		
+	}
+	
+	public void changePlayer() {
 		
 	}
 
