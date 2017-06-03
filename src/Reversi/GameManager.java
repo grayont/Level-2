@@ -43,20 +43,39 @@ public class GameManager {
 		int difInC;
 		int tempR;
 		int tempC;
+		int numOfSpacesChecked = 0;
 		
 		for(int r = row - 1; r <= row + 1; r++){
 			for(int c = col - 1; c <= col + 1; c++) {
 				if(spaces[r][c] == p || spaces[r][c] == 0) {
-					
+				
 				}
 				else {
+					numOfSpacesChecked = 0;
 					difInR = r - row;
 					difInC = c - col;
 					tempR = r;
 					tempC = c;
+					
 					while(spaces[tempR][tempC] != 0) {
+						
+						numOfSpacesChecked++;
+						System.out.println("tempR: " + tempR);
+						System.out.println("tempC: " + tempC);
+						if(spaces[tempR][tempC] == p) {
+							for(int x = 0; x < numOfSpacesChecked; x++){
+									spaces[tempR][tempC] = p;
+									
+									tempR -= difInR;
+									tempC -= difInC;
+							}
+							
+							break;
+						}
 						tempR += difInR;
 						tempC += difInC;
+						
+						
 					}
 				}
 			}
