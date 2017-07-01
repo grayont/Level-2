@@ -13,6 +13,7 @@ public class Reversi {
 		GameManager gm = new GameManager();
 		Display display = new Display(896, 896, gm);
 		Controller controller = new Controller(gm, display);
+		gm.setController(controller);
 		JFrame frame = new JFrame();
 		frame.add(display);
 		frame.addMouseListener(controller);

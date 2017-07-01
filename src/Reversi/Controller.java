@@ -43,6 +43,7 @@ public class Controller implements MouseListener{
 		boolean completeTurn = gm.drawCircle(r, c, player);
 		display.repaint();
 		if(completeTurn) {
+			display.update();
 			gm.checkWin();
 			if(player == 1) {
 				player ++;
@@ -51,6 +52,15 @@ public class Controller implements MouseListener{
 				player --;
 			}	
 		}
+	}
+	
+	public void skipTurn() {	
+		if(player == 1) {
+			player ++;
+		}
+		else{
+			player --;
+		}	
 	}
 
 	@Override

@@ -8,6 +8,7 @@ public class GameManager {
 		private int r;
 		private int c;
 		private int numMoves;
+		private Controller ctrl;
 		
 		public GameManager() {
 			spaces = new int[8][8];
@@ -24,6 +25,14 @@ public class GameManager {
 					}
 				}
 			}
+		}
+		
+		public void setController(Controller ctrl) {
+			this.ctrl = ctrl;
+		}
+		
+		public Controller getController() {
+			return ctrl;
 		}
 		
 		public int[][] getSpaces() {
@@ -97,6 +106,30 @@ public class GameManager {
 				}
 			}
 			return completeMove;
+		}
+		
+		public int getWhiteScore() {
+			int pOneScore = 0;
+			for(int r = 0; r < spaces.length; r++) {
+				for( int c = 0; c < spaces[r].length; c++){
+					if(spaces[r][c] == 1) {
+						pOneScore++;
+					}
+				}
+			}
+			return pOneScore;
+		}
+		
+		public int getBlackScore() {
+			int pTwoScore = 0;
+			for(int r = 0; r < spaces.length; r++) {
+				for( int c = 0; c < spaces[r].length; c++){
+					if(spaces[r][c] == 2) {
+						pTwoScore++;
+					}
+				}
+			}
+			return pTwoScore;
 		}
 		
 		public void checkWin() {
